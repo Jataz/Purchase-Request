@@ -13,6 +13,7 @@
         </a>
       </li>
       
+    {% if perms.myapp.view_purchaserequest %}
     <li class="nav-item">
       <a href="{% url 'purchase_requests' %}" class="nav-link" >
         <i class="nav-icon fas fa-folder-open"></i>
@@ -21,7 +22,9 @@
         </p>
       </a>
     </li>
+    {% endif %}
 
+    {% if perms.myapp.view_purchaseorder  %}
     <li class="nav-item">
       <a href="{% url 'purchase_orders' %}" class="nav-link" >
         <i class="nav-icon fas fa-folder-open"></i>
@@ -30,7 +33,9 @@
         </p>
       </a>
     </li>
+    {% endif %}
 
+    {% if perms.myapp.admin %}
     <li class="nav-item">
       <a href="{% url 'pending_requests' %}" class="nav-link" >
         <i class="nav-icon fas fa-folder-open"></i>
@@ -39,6 +44,7 @@
         </p>
       </a>
     </li>
+    {% endif %}
 
     <li class="nav-item">
       <a href="{% url 'logout' %}" class="nav-link">
