@@ -12,7 +12,7 @@ urlpatterns = [
     path('purchase_request/update/<int:pk>/', views.update_purchase_request, name='update_purchase_request'),
     path('purchase_request/delete/<int:pk>/', views.delete_purchase_request, name='delete_purchase_request'),
     path('purchase_requests/', views.user_purchase_requests, name='purchase_requests'),
-    
+    path('purchase-request/<int:pk>/add-quotation/', views.add_quotation, name='add_quotation'),
     path('pending_requests/', views.admin_pending_requests, name='pending_requests'),
     path('review_purchase_request/<int:pk>/', views.review_purchase_request, name='review_purchase_request'),
     

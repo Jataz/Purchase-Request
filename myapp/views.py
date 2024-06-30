@@ -40,7 +40,7 @@ def create_purchase_request(request):
     return render(request, 'pages/purchase_request/create.html', {'form': form})
 
 # View details of a purchase request
-def purchase_request_detail(request, pk):
+""" def purchase_request_detail(request, pk):
     purchase_request = get_object_or_404(PurchaseRequest, pk=pk)
     if request.method == 'POST':
         quotation_form = QuotationForm(request.POST, request.FILES)
@@ -52,6 +52,28 @@ def purchase_request_detail(request, pk):
     else:
         quotation_form = QuotationForm()
     return render(request, 'pages/purchase_request/purchase_request_detail.html', {
+        'purchase_request': purchase_request,
+        'quotation_form': quotation_form,
+    }) """
+
+def purchase_request_detail(request, pk):
+    purchase_request = get_object_or_404(PurchaseRequest, pk=pk)
+    return render(request, 'pages/purchase_request/purchase_request_detail.html', {
+        'purchase_request': purchase_request,
+    })
+#Add Qountation
+def add_quotation(request, pk):
+    purchase_request = get_object_or_404(PurchaseRequest, pk=pk)
+    if request.method == 'POST':
+        quotation_form = QuotationForm(request.POST, request.FILES)
+        if quotation_form.is_valid():
+            quotation = quotation_form.save(commit=False)
+            quotation.purchase_request = purchase_request
+            quotation.save()
+            return redirect('purchase_request_detail', pk=purchase_request.pk)
+    else:
+        quotation_form = QuotationForm()
+    return render(request, 'pages/purchase_request/add_quotation.html', {
         'purchase_request': purchase_request,
         'quotation_form': quotation_form,
     })

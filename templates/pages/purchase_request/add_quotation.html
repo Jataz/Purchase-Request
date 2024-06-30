@@ -2,7 +2,7 @@
 {% extends 'layouts/base.html' %}
 {% load static %}
 
-{% block title %}| Review Purchase Request {% endblock title %}
+{% block title %}| Add Qountation {% endblock title %}
 
 {% block extrastyle %}
 
@@ -32,12 +32,11 @@
     <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-6">
-        <h1 class="m-0">Review Purchase Request</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Review Purchase Request</li>
+            <li class="breadcrumb-item active">Qountation</li>
         </ol>
         </div><!-- /.col -->
     </div><!-- /.row -->
@@ -49,26 +48,11 @@
 <section class="content">
 
 
-    <h1>Review Purchase Request</h1>
-    <p><strong>Product Name:</strong> {{ purchase_request.product_name }}</p>
-    <p><strong>Quantity:</strong> {{ purchase_request.quantity }}</p>
-    <p><strong>Description:</strong> {{ purchase_request.description }}</p>
-
-    <h2>Quotations</h2>
-    <ul>
-        {% for quotation in purchase_request.quotations.all %}
-            <li>
-                <p><strong>Supplier:</strong> {{ quotation.supplier_name }}</p>
-                <p><strong>Price:</strong> {{ quotation.price }}</p>
-                <p><a href="{{ quotation.quotation_file.url }}">View Quotation</a></p>
-            </li>
-        {% endfor %}
-    </ul>
-
-    <form method="post">
+    <h1>Add Quotation for {{ purchase_request.product_name }}</h1>
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <button type="submit" name="approve">Approve</button>
-        <button type="submit" name="decline">Decline</button>
+        {{ quotation_form.as_p }}
+        <button type="submit">Add Quotation</button>
         <a href="javascript:history.back()" class="btn btn-outline-info btn-sm">Cancel</a>
     </form>
 
@@ -110,6 +94,5 @@
     
 
 {% endblock extra_scripts %}
-
 
 

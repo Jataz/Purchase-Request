@@ -32,7 +32,6 @@
     <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-6">
-        <h1 class="m-0">Purchase Request Detail</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
@@ -66,12 +65,9 @@
         {% endfor %}
     </ul>
 
-    <h2>Add Quotation</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ quotation_form.as_p }}
-        <button type="submit">Add Quotation</button>
-    </form>
+    <a href="{% url 'add_quotation' purchase_request.pk %}">Add Quotation</a>
+
+    <a href="javascript:history.back()" class="btn btn-outline-info btn-sm">Cancel</a>
 
 </section>
 <!-- /.content -->

@@ -75,6 +75,7 @@
                         <tr>
                             <th>Product Name</th>
                             <th>Quantity</th>
+                            <th>Status</th>
                             <th>Actions</th>
                         </tr>
                       </thead>
@@ -83,6 +84,7 @@
                         <tr>
                             <td>{{ request.product_name }}</td>
                             <td>{{ request.quantity }}</td>
+                            <td>{{ request.status }}</td>
                             <td>
                                 <a href="{% url 'purchase_request_detail' request.pk %}">View</a> |
                                 <a href="{% url 'update_purchase_request' request.pk %}">Edit</a> |
