@@ -52,6 +52,7 @@
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">{% if form.instance.pk %}Update{% else %}Submit{% endif %}</button>
+            <a href="javascript:history.back()">Cancel</a>
         </form>
 
     </section>

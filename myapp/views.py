@@ -79,7 +79,7 @@ def delete_purchase_request(request, pk):
 # List of pending purchase requests for admin
 def admin_pending_requests(request):
     pending_requests = PurchaseRequest.objects.filter(status='Pending')
-    return render(request, 'admin_pending_requests.html', {'pending_requests': pending_requests})
+    return render(request, 'pages/admin/admin_pending_requests.html', {'pending_requests': pending_requests})
 
 # Review and manage purchase requests
 def review_purchase_request(request, pk):
@@ -98,17 +98,17 @@ def review_purchase_request(request, pk):
         elif 'decline' in request.POST:
             purchase_request.status = 'Declined'
             purchase_request.save()
-        return redirect('admin_pending_requests')
-    return render(request, 'review_purchase_request.html', {'purchase_request': purchase_request})
+        return redirect('pending_requests')
+    return render(request, 'pages/admin/review_purchase_request.html', {'purchase_request': purchase_request})
 
 # View, update, and delete purchase orders
 def purchase_order_list(request):
     purchase_orders = PurchaseOrder.objects.all()
-    return render(request, 'purchase_order_list.html', {'purchase_orders': purchase_orders})
+    return render(request, 'pages/purchase_order/index.html', {'purchase_orders': purchase_orders})
 
 def purchase_order_detail(request, pk):
     purchase_order = get_object_or_404(PurchaseOrder, pk=pk)
-    return render(request, 'purchase_order_detail.html', {'purchase_order': purchase_order})
+    return render(request, 'pages/purchase_order/purchase_order_detail.html', {'purchase_order': purchase_order})
 
 def update_purchase_order(request, pk):
     purchase_order = get_object_or_404(PurchaseOrder, pk=pk)
@@ -116,10 +116,10 @@ def update_purchase_order(request, pk):
         form = PurchaseOrderForm(request.POST, instance=purchase_order)
         if form.is_valid():
             form.save()
-            return redirect('purchase_order_detail', pk=purchase_order.pk)
+            return redirect('pages/purchase_order/purchase_order_detail', pk=purchase_order.pk)
     else:
         form = PurchaseOrderForm(instance=purchase_order)
-    return render(request, 'purchase_order_form.html', {'form': form})
+    return render(request, 'pages/purchase_order/create.html', {'form': form})
 
 def delete_purchase_order(request, pk):
     purchase_order = get_object_or_404(PurchaseOrder, pk=pk)

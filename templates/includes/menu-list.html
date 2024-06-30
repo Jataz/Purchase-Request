@@ -17,20 +17,28 @@
       <a href="{% url 'purchase_requests' %}" class="nav-link" >
         <i class="nav-icon fas fa-folder-open"></i>
         <p>
-          Purchase Request
+          Purchase Requests
         </p>
       </a>
     </li>
 
     <li class="nav-item">
-      <a href="{% url 'create_purchase_request' %}" class="nav-link" >
+      <a href="{% url 'purchase_orders' %}" class="nav-link" >
         <i class="nav-icon fas fa-folder-open"></i>
         <p>
-          Purchase Request
+          Purchase Orders
         </p>
       </a>
     </li>
 
+    <li class="nav-item">
+      <a href="{% url 'pending_requests' %}" class="nav-link" >
+        <i class="nav-icon fas fa-folder-open"></i>
+        <p>
+           Requests
+        </p>
+      </a>
+    </li>
 
     <li class="nav-item">
       <a href="{% url 'logout' %}" class="nav-link">
