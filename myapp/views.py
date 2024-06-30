@@ -51,7 +51,7 @@ def purchase_request_detail(request, pk):
             return redirect('purchase_request_detail', pk=purchase_request.pk)
     else:
         quotation_form = QuotationForm()
-    return render(request, 'purchase_request_detail.html', {
+    return render(request, 'pages/purchase_request/purchase_request_detail.html', {
         'purchase_request': purchase_request,
         'quotation_form': quotation_form,
     })
